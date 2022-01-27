@@ -1,6 +1,6 @@
 package com.example.ecommercelp2.Domain.Entity;
 
-import com.example.ecommercelp2.Infrastructure.Exception.DomainInvalidException;
+import com.example.ecommercelp2.Infrastructure.Exception.InvalidDomainException;
 
 import javax.validation.*;
 import java.util.HashSet;
@@ -23,7 +23,7 @@ public class Entity {
         }
 
         if (!messages.isEmpty()) {
-            throw new DomainInvalidException(messages);
+            throw new InvalidDomainException(messages);
         }
     }
 }
