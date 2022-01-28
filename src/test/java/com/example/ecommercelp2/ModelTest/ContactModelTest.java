@@ -14,7 +14,7 @@ public class ContactModelTest {
                     "testing",
                     "51123567890");
         } catch (InvalidDomainException e) {
-            String MessageError = "[email : Please, provide a valid email address.]";
+            String MessageError = "[email : Please provide a valid email address.]";
             Assertions.assertEquals(MessageError, e.getMessage());
         }
     }

@@ -1,8 +1,8 @@
 package com.example.ecommercelp2.Service.DTO;
 
 public class ErrorDTO {
-    private String key;
-    private String message;
+    private final String key;
+    private final String message;
 
     public ErrorDTO(String key, String message) {
         this.key = key;

@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class ApiResponse {
-    private LocalDateTime timestamp;
-    private Integer status;
-    private String code;
-    private Set<ErrorDTO> errors;
+    private final LocalDateTime timestamp;
+    private final Integer status;
+    private final String code;
+    private final Set<ErrorDTO> errors;
 
     public ApiResponse(LocalDateTime timestamp, Integer status, String code, Set<ErrorDTO> errors) {
         this.timestamp = timestamp;
