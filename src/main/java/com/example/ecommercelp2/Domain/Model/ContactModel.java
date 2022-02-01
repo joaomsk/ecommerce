@@ -1,13 +1,14 @@
 package com.example.ecommercelp2.Domain.Model;
 
-import com.example.ecommercelp2.Domain.Entity.Entity;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Embeddable;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
-public class ContactModel extends Entity {
+@Embeddable
+public class ContactModel {
 
     @NotNull(message = "Email is mandatory.")
     @Length(max = 20, message = "Email cant have more than 100 digits.")
@@ -25,7 +26,14 @@ public class ContactModel extends Entity {
     public ContactModel(String email, String cellphone) {
         this.email = email;
         this.cellphone = cellphone;
-        isValid();
+    }
+
+    private void setEmail(String email) {
+        this.email = email;
+    }
+
+    private void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
     public String getEmail() {

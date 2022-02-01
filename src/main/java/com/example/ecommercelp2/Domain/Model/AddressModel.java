@@ -1,47 +1,47 @@
 package com.example.ecommercelp2.Domain.Model;
 
-import com.example.ecommercelp2.Domain.Entity.Entity;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.Max;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public class AddressModel extends Entity {
+@Embeddable
+public class AddressModel {
 
     @NotBlank(message = "State is required.")
     @NotNull(message = "State is required.")
-    @Length(max = 20, message = "State can only have 2 digits.")
+    @Size(max = 2, message = "State can only have 2 digits.")
     private String State;
 
     @NotBlank(message = "City is required.")
     @NotNull(message = "City is required.")
-    @Length(max = 20, message = "City can't have more than 50 digits.")
+    @Size(max = 50, message = "City can't have more than 50 digits.")
     private String City;
 
     @NotBlank(message = "CEP is required.")
     @NotNull(message = "CEP is required.")
-    @Length(max = 20, message = "CEP can't have more than 10 digits.")
+    @Size(max = 10, message = "CEP can't have more than 10 digits.")
     private String CEP;
 
     @NotBlank(message = "Neighborhood is required.")
     @NotNull(message = "Neighborhood is required.")
-    @Length(max = 20, message = "Neighborhood can't have more than 50 digits.")
+    @Size(max = 50, message = "Neighborhood can't have more than 50 digits.")
     private String Neighborhood;
 
     @NotBlank(message = "Street is required.")
     @NotNull(message = "Street is required.")
-    @Length(max = 20, message = "Street can't have more than two digits.")
+    @Size(max = 100, message = "Street can't have more than two digits.")
     private String Street;
 
     @NotBlank(message = "HouseNumber is required.")
     @NotNull(message = "HouseNumber is required.")
-    @Length(max = 20, message = "HouseNumber can't have more than two digits.")
+    @Size(max = 6, message = "HouseNumber can't have more than two digits.")
     private String HouseNumber;
 
     @Nullable
-    @Length(max = 20, message = "AddressAddOn cant have more than 120 digits.")
+    @Size(max = 120, message = "AddressAddOn cant have more than 120 digits.")
     private String AddressAddOn;
 
     @Deprecated
@@ -56,7 +56,34 @@ public class AddressModel extends Entity {
         this.Street = street;
         this.HouseNumber = houseNumber;
         this.AddressAddOn = addressAddOn;
-        isValid();
+    }
+
+    private void setState(String state) {
+        State = state;
+    }
+
+    private void setCity(String city) {
+        City = city;
+    }
+
+    private void setCEP(String CEP) {
+        this.CEP = CEP;
+    }
+
+    private void setNeighborhood(String neighborhood) {
+        Neighborhood = neighborhood;
+    }
+
+    private void setStreet(String street) {
+        Street = street;
+    }
+
+    private void setHouseNumber(String houseNumber) {
+        HouseNumber = houseNumber;
+    }
+
+    private void setAddressAddOn(@Nullable String addressAddOn) {
+        AddressAddOn = addressAddOn;
     }
 
     public String getState() {
