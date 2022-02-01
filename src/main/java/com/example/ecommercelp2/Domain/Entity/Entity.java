@@ -2,10 +2,12 @@ package com.example.ecommercelp2.Domain.Entity;
 
 import com.example.ecommercelp2.Infrastructure.Exception.InvalidDomainException;
 
+import javax.persistence.MappedSuperclass;
 import javax.validation.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@MappedSuperclass
 public class Entity {
 
     public void isValid() {
