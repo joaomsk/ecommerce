@@ -4,6 +4,10 @@ import com.example.ecommercelp2.Infrastructure.Exception.InvalidDomainException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 class CustomerModelTest {
 
     @Test
@@ -35,8 +39,8 @@ class CustomerModelTest {
         Assertions.assertNull(Customer.getAddress().getAddressAddOn());
         Assertions.assertEquals("testing@gmail.com", Customer.getContact().getEmail());
         Assertions.assertEquals("51999999999", Customer.getContact().getCellphone());
-        Assertions.assertEquals("João Gabriel Meleski Dier", Customer.getCostumerName());
-        Assertions.assertEquals("308.269.110-21", Customer.getCostumerCPF());
+        Assertions.assertEquals("João Gabriel Meleski Dier", Customer.getCustomerName());
+        Assertions.assertEquals("308.269.110-21", Customer.getCustomerCPF());
     }
 
     @Test
@@ -169,13 +173,13 @@ class CustomerModelTest {
                 "51999999999"
         );
 
-        CustomerModel Costumer;
+        CustomerModel Customer;
 
         try {
-            Costumer = new CustomerModel(null, Address, Contact, "João Dier",
+            Customer = new CustomerModel(null, Address, Contact, "João Dier",
                     "308.269.110-21");
         } catch (InvalidDomainException e) {
-            String MessageError = "[Address.State : State is required., Address.HouseNumber : HouseNumber is required., Address.Neighborhood : Neighborhood is required., Address.CEP : CEP is required., Address.Street : Street is required., Address.City : City is required.]";
+            String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Street : Street is required., Address.Neighborhood : Neighborhood can't have more than 50 digits.]";
             Assertions.assertEquals(MessageError, e.getMessage());
         }
     }
