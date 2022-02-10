@@ -24,7 +24,7 @@ public class PersonModel extends Entity {
     private ContactModel Contact;
 
     @Deprecated
-    public PersonModel() {
+    protected PersonModel() {
     }
 
     public PersonModel(Integer id, AddressModel address, ContactModel contact) {

@@ -45,7 +45,7 @@ public class AddressModel {
     private String AddressAddOn;
 
     @Deprecated
-    public AddressModel() {
+    protected AddressModel() {
     }
 
     public AddressModel(String state, String city, String CEP, String neighborhood, String street, String houseNumber, String addressAddOn) {

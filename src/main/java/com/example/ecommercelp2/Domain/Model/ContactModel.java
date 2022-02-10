@@ -3,7 +3,6 @@ package com.example.ecommercelp2.Domain.Model;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Embeddable;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +19,7 @@ public class ContactModel {
     private String cellphone;
 
     @Deprecated
-    public ContactModel() {
+    protected ContactModel() {
     }
 
     public ContactModel(String email, String cellphone) {
