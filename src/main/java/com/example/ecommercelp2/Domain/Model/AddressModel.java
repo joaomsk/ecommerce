@@ -48,7 +48,7 @@ public class AddressModel {
     protected AddressModel() {
     }
 
-    public AddressModel(String state, String city, String CEP, String neighborhood, String street, String houseNumber, String addressAddOn) {
+    public AddressModel(String state, String city, String CEP, String neighborhood, String street, String houseNumber, @Nullable String addressAddOn) {
         this.State = state;
         this.City = city;
         this.CEP = CEP;
@@ -110,6 +110,7 @@ public class AddressModel {
         return HouseNumber;
     }
 
+    @Nullable
     public String getAddressAddOn() {
         return AddressAddOn;
     }

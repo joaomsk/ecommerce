@@ -29,6 +29,14 @@ public class SupplierModel extends PersonModel {
         isValid();
     }
 
+    public void setSupplierName(String supplierName) {
+        SupplierName = supplierName;
+    }
+
+    public void setSupplierCNPJ(String supplierCNPJ) {
+        SupplierCNPJ = supplierCNPJ;
+    }
+
     public String getSupplierName() {
         return SupplierName;
     }

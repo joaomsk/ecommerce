@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
-public class PersonModel extends Entity {
+public abstract class PersonModel extends Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class PersonModel extends Entity {
     private ContactModel Contact;
 
     @Deprecated
-    protected PersonModel() {
+    public PersonModel() {
     }
 
     public PersonModel(Integer id, AddressModel address, ContactModel contact) {
@@ -33,15 +33,15 @@ public class PersonModel extends Entity {
         Contact = contact;
     }
 
-    private void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    private void setAddress(AddressModel address) {
+    public void setAddress(AddressModel address) {
         Address = address;
     }
 
-    private void setContact(ContactModel contact) {
+    public void setContact(ContactModel contact) {
         Contact = contact;
     }
 
@@ -56,4 +56,6 @@ public class PersonModel extends Entity {
     public ContactModel getContact() {
         return Contact;
     }
+
+
 }

@@ -27,19 +27,19 @@ public class ContactModel {
         this.cellphone = cellphone;
     }
 
-    private void setEmail(String email) {
-        this.email = email;
-    }
-
-    private void setCellphone(String cellphone) {
-        this.cellphone = cellphone;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public String getCellphone() {
         return cellphone;
+    }
+
+    private void setEmail(String email) {
+        this.email = email;
+    }
+
+    private void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 }

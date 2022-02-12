@@ -147,7 +147,7 @@ public class SupplierModelTest {
             Supplier = new SupplierModel(null, Address, Contact, "Tabajara",
                     "42.115.044/0001-07");
         } catch (InvalidDomainException e) {
-            String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Neighborhood : Neighborhood can't have more than 50 digits., Address.Street : Street is required.]";
+            String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Street : Street is required., Address.Neighborhood : Neighborhood can't have more than 50 digits.]";
             Assertions.assertEquals(MessageError, e.getMessage());
         }
     }
