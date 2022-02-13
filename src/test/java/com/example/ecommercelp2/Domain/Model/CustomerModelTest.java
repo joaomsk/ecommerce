@@ -1,12 +1,10 @@
 package com.example.ecommercelp2.Domain.Model;
 
+import com.example.ecommercelp2.Domain.Model.InfoModels.AddressModel;
+import com.example.ecommercelp2.Domain.Model.InfoModels.ContactModel;
 import com.example.ecommercelp2.Infrastructure.Exception.InvalidDomainException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 class CustomerModelTest {
 
@@ -27,9 +25,9 @@ class CustomerModelTest {
                 "51999999999"
         );
 
-        var Customer = new CustomerModel(1, Address, Contact, "João Gabriel Meleski Dier", "308.269.110-21");
+        var Customer = new CustomerModel(Address, Contact, null,"João Gabriel Meleski Dier", "308.269.110-21");
 
-        Assertions.assertEquals(1, Customer.getId());
+        Assertions.assertNull(Customer.getIdCustomer());
         Assertions.assertEquals("RS", Customer.getAddress().getState());
         Assertions.assertEquals("Ipuaçu", Customer.getAddress().getCity());
         Assertions.assertEquals("98445970", Customer.getAddress().getCEP());
@@ -61,7 +59,7 @@ class CustomerModelTest {
         );
 
         try {
-            new CustomerModel(null, Address, Contact, null, null);
+            new CustomerModel(Address, Contact, null,null, null);
         } catch (InvalidDomainException e) {
             String MessageError = "[CostumerName : Name is required, CostumerCPF : CPF is required.]";
             Assertions.assertEquals(MessageError, e.getMessage());
@@ -87,9 +85,9 @@ class CustomerModelTest {
 
         try {
             new CustomerModel(
-                    null,
                     Address,
                     Contact,
+                    null,
                     "",
                     ""
             );
@@ -119,7 +117,7 @@ class CustomerModelTest {
         CustomerModel Customer;
 
         try {
-            Customer = new CustomerModel(null, Address, Contact,
+            Customer = new CustomerModel(Address, Contact, null,
                     "ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910",
                     "1234");
         } catch (InvalidDomainException e) {
@@ -148,7 +146,7 @@ class CustomerModelTest {
         CustomerModel Costumer;
 
         try {
-            Costumer = new CustomerModel(null, Address, Contact, "João Dier",
+            Costumer = new CustomerModel(Address, Contact,null, "João Dier",
                     "308.269.110-21");
         } catch (InvalidDomainException e) {
             String MessageError = "[Address.State : State is required., Address.HouseNumber : HouseNumber is required., Address.Neighborhood : Neighborhood is required., Address.CEP : CEP is required., Address.Street : Street is required., Address.City : City is required.]";
@@ -176,7 +174,7 @@ class CustomerModelTest {
         CustomerModel Customer;
 
         try {
-            Customer = new CustomerModel(null, Address, Contact, "João Dier",
+            Customer = new CustomerModel( Address, Contact, null, "João Dier",
                     "308.269.110-21");
         } catch (InvalidDomainException e) {
             String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Street : Street is required., Address.Neighborhood : Neighborhood can't have more than 50 digits.]";

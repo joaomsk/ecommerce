@@ -1,5 +1,7 @@
 package com.example.ecommercelp2.Domain.Model;
 
+import com.example.ecommercelp2.Domain.Model.InfoModels.AddressModel;
+import com.example.ecommercelp2.Domain.Model.InfoModels.ContactModel;
 import com.example.ecommercelp2.Infrastructure.Exception.InvalidDomainException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,9 +25,9 @@ public class SupplierModelTest {
                 "51999999999"
         );
 
-        var Supplier = new SupplierModel(1, Address, Contact, "Empresas Tabajara", "42.115.044/0001-07");
+        var Supplier = new SupplierModel(Address, Contact, null,"Empresas Tabajara", "42.115.044/0001-07");
 
-        Assertions.assertEquals(1, Supplier.getId());
+        Assertions.assertNull(Supplier.getIdSupplier());
         Assertions.assertEquals("RS", Supplier.getAddress().getState());
         Assertions.assertEquals("Ipuaçu", Supplier.getAddress().getCity());
         Assertions.assertEquals("98445970", Supplier.getAddress().getCEP());
@@ -57,7 +59,7 @@ public class SupplierModelTest {
         );
 
         try {
-            new SupplierModel(null, Address, Contact, null, null);
+            new SupplierModel(Address, Contact, null,null, null);
         } catch (InvalidDomainException e) {
             String MessageError = "[SupplierCNPJ : CNPJ is required., SupplierName : Name is required]";
             Assertions.assertEquals(MessageError, e.getMessage());
@@ -83,9 +85,9 @@ public class SupplierModelTest {
 
         try {
             new SupplierModel(
-                    null,
                     Address,
                     Contact,
+                    null,
                     "",
                     ""
             );
@@ -115,7 +117,7 @@ public class SupplierModelTest {
         SupplierModel Supplier;
 
         try {
-            Supplier = new SupplierModel(null, Address, Contact,
+            Supplier = new SupplierModel(Address, Contact, null,
                     "ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910ABCDEFGHIJKLMNOPQRSTUVXYZ12345678910",
                     "1234");
         } catch (InvalidDomainException e) {
@@ -144,10 +146,10 @@ public class SupplierModelTest {
         SupplierModel Supplier;
 
         try {
-            Supplier = new SupplierModel(null, Address, Contact, "Tabajara",
+            Supplier = new SupplierModel(Address, Contact, null, "Tabajara",
                     "42.115.044/0001-07");
         } catch (InvalidDomainException e) {
-            String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Street : Street is required., Address.Neighborhood : Neighborhood can't have more than 50 digits.]";
+            String MessageError = "[Address.HouseNumber : HouseNumber is required., Address.CEP : CEP can't have more than 10 digits., Address.State : State can only have 2 digits., Address.Neighborhood : Neighborhood can't have more than 50 digits., Address.Street : Street is required.]";
             Assertions.assertEquals(MessageError, e.getMessage());
         }
     }
