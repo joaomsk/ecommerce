@@ -1,17 +1,16 @@
 package com.example.ecommercelp2.Domain.Model;
 
 import com.example.ecommercelp2.Domain.Entity.Entity;
+import com.example.ecommercelp2.Domain.Model.InfoModels.AddressModel;
+import com.example.ecommercelp2.Domain.Model.InfoModels.ContactModel;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.MappedSuperclass;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class PersonModel extends Entity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @Valid
     @NotNull(message = "Address cant be null")
@@ -27,26 +26,17 @@ public abstract class PersonModel extends Entity {
     public PersonModel() {
     }
 
-    public PersonModel(Integer id, AddressModel address, ContactModel contact) {
-        this.id = id;
+    public PersonModel(AddressModel address, ContactModel contact) {
         Address = address;
         Contact = contact;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setAddress(AddressModel address) {
+    private void setAddress(AddressModel address) {
         Address = address;
     }
 
-    public void setContact(ContactModel contact) {
+    private void setContact(ContactModel contact) {
         Contact = contact;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public AddressModel getAddress() {
@@ -56,6 +46,5 @@ public abstract class PersonModel extends Entity {
     public ContactModel getContact() {
         return Contact;
     }
-
 
 }

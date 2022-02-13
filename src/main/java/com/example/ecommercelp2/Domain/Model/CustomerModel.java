@@ -1,14 +1,18 @@
 package com.example.ecommercelp2.Domain.Model;
 
-import org.hibernate.cfg.AccessType;
+import com.example.ecommercelp2.Domain.Model.InfoModels.AddressModel;
+import com.example.ecommercelp2.Domain.Model.InfoModels.ContactModel;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
 public class CustomerModel extends PersonModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_customer", nullable = false)
+    private Integer idCustomer;
 
     @Column(name = "name")
     @Size(max = 100, message = "Name cant have more than 100 digits.")
@@ -22,19 +26,25 @@ public class CustomerModel extends PersonModel {
     public CustomerModel() {
     }
 
-    public CustomerModel(Integer id, AddressModel address, ContactModel contact, String customerName, String customerCPF) {
-        super(id, address, contact);
+    public CustomerModel(AddressModel address, ContactModel contact, Integer idCustomer, String customerName, String customerCPF) {
+        super(address, contact);
+        this.idCustomer = idCustomer;
         CustomerName = customerName;
+        CustomerCPF = customerCPF;
+        isValid();
+    }
+
+    private void setCustomerName(String customerName) {
+        CustomerName = customerName;
+    }
+
+    private void setCustomerCPF(String customerCPF) {
         CustomerCPF = customerCPF;
     }
 
-    /*public void setCustomerName(String customerName) {
-        CustomerName = customerName;
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
-
-    public void setCustomerCPF(String customerCPF) {
-        CustomerCPF = customerCPF;
-    }*/
 
     public String getCustomerCPF() {
         return CustomerCPF;
@@ -42,5 +52,9 @@ public class CustomerModel extends PersonModel {
 
     public String getCustomerName() {
         return CustomerName;
+    }
+
+    public Integer getIdCustomer() {
+        return idCustomer;
     }
 }

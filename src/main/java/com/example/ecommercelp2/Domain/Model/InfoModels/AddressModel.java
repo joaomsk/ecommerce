@@ -1,4 +1,4 @@
-package com.example.ecommercelp2.Domain.Model;
+package com.example.ecommercelp2.Domain.Model.InfoModels;
 
 import org.springframework.lang.Nullable;
 
@@ -58,34 +58,6 @@ public class AddressModel {
         this.AddressAddOn = addressAddOn;
     }
 
-    private void setState(String state) {
-        State = state;
-    }
-
-    private void setCity(String city) {
-        City = city;
-    }
-
-    private void setCEP(String CEP) {
-        this.CEP = CEP;
-    }
-
-    private void setNeighborhood(String neighborhood) {
-        Neighborhood = neighborhood;
-    }
-
-    private void setStreet(String street) {
-        Street = street;
-    }
-
-    private void setHouseNumber(String houseNumber) {
-        HouseNumber = houseNumber;
-    }
-
-    private void setAddressAddOn(@Nullable String addressAddOn) {
-        AddressAddOn = addressAddOn;
-    }
-
     public String getState() {
         return State;
     }
@@ -113,5 +85,33 @@ public class AddressModel {
     @Nullable
     public String getAddressAddOn() {
         return AddressAddOn;
+    }
+
+    private void setState(String state) {
+        State = state;
+    }
+
+    private void setCity(String city) {
+        City = city;
+    }
+
+    private void setCEP(String CEP) {
+        this.CEP = CEP;
+    }
+
+    private void setNeighborhood(String neighborhood) {
+        Neighborhood = neighborhood;
+    }
+
+    private void setStreet(String street) {
+        Street = street;
+    }
+
+    private void setHouseNumber(String houseNumber) {
+        HouseNumber = houseNumber;
+    }
+
+    private void setAddressAddOn(@Nullable String addressAddOn) {
+        AddressAddOn = addressAddOn;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.ecommercelp2.Domain.Model;
+package com.example.ecommercelp2.Domain.Model.InfoModels;
 
 import org.hibernate.validator.constraints.Length;
 
