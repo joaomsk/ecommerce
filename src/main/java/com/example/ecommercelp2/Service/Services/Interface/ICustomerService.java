@@ -11,5 +11,6 @@ public interface ICustomerService {
     CustomerDTO getCustomer(Integer id);
     String deleteCustomer(Integer id);
     String pathCustomer(CustomerDataChangeDTO model, Integer id);
+    CustomerModel searchCustomerById(Integer id);
 
 }

@@ -1,7 +1,7 @@
 package com.example.ecommercelp2.Service.Services;
 
 import com.example.ecommercelp2.Domain.Model.SupplierModel;
-import com.example.ecommercelp2.Infrastructure.Exception.UserAlreadyExistsException;
+import com.example.ecommercelp2.Infrastructure.Exception.AlreadyExistsException;
 import com.example.ecommercelp2.Infrastructure.Repositories.ISupplierRepository;
 import com.example.ecommercelp2.Service.DTO.AbstractionDTO.SupplierDTO;
 import com.example.ecommercelp2.Service.Services.Interface.ISupplierService;
@@ -22,17 +22,21 @@ public class SupplierService implements ISupplierService {
 
         try {
             if (model != null) {
-                var customerExists = _supplierRepository.existsById(model.getId());
+                var customerExists = _supplierRepository.existsById(model.getIdSupplier());
 
                 if (!customerExists) {
                     _supplierRepository.save(model);
                 } else ret = "Supplier already exists in our domain";
             }
-        } catch (UserAlreadyExistsException e) {
-            throw new UserAlreadyExistsException("Supplier already exists in our domain");
+        } catch (AlreadyExistsException e) {
+            throw new AlreadyExistsException("Supplier already exists in our domain");
         }
 
         return ret;
+    }
+
+    public SupplierModel searchSupplierById(Integer id) {
+        return _supplierRepository.findById(id).get();
     }
 
     public SupplierDTO getSupplier(Integer id) {

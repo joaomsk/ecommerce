@@ -1,7 +1,7 @@
 package com.example.ecommercelp2.Service.Services;
 
 import com.example.ecommercelp2.Domain.Model.CustomerModel;
-import com.example.ecommercelp2.Infrastructure.Exception.UserAlreadyExistsException;
+import com.example.ecommercelp2.Infrastructure.Exception.AlreadyExistsException;
 import com.example.ecommercelp2.Infrastructure.Repositories.ICustomerRepository;
 import com.example.ecommercelp2.Service.DTO.AbstractionDTO.CustomerDTO;
 import com.example.ecommercelp2.Service.DTO.AbstractionDTO.CustomerDataChangeDTO;
@@ -23,17 +23,21 @@ public class CustomerService implements ICustomerService {
 
         try {
             if (model != null) {
-                var customerExists = _customerRepository.existsById(model.getId());
+                var customerExists = _customerRepository.existsById(model.getIdCustomer());
 
                 if (!customerExists) {
                     _customerRepository.save(model);
                 } else ret = "Customer already exists in our domain";
             }
-        } catch (UserAlreadyExistsException e) {
-            throw new UserAlreadyExistsException("Customer already exists in our domain");
+        } catch (AlreadyExistsException e) {
+            throw new AlreadyExistsException("Customer already exists in our domain");
         }
 
         return ret;
+    }
+
+    public CustomerModel searchCustomerById(Integer id) {
+        return _customerRepository.findById(id).get();
     }
 
     public CustomerDTO getCustomer(Integer id) {
@@ -71,9 +75,9 @@ public class CustomerService implements ICustomerService {
 
                 if (model.getCustomerName() != null && model.getCustomerCPF() != null) {
                     customer = new CustomerModel(
-                            id,
                             customer.getAddress(),
                             customer.getContact(),
+                            id,
                             model.CustomerName,
                             model.CustomerCPF
                     );

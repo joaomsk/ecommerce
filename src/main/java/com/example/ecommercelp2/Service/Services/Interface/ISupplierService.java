@@ -9,4 +9,5 @@ public interface ISupplierService {
     String addSupplier(SupplierModel model);
     SupplierDTO getSupplier(Integer id);
     String deleteSupplier(Integer id);
+    SupplierModel searchSupplierById(Integer id);
 }
