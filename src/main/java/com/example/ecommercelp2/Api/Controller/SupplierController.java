@@ -11,7 +11,7 @@ import javax.validation.Valid;
 @RequestMapping("/suppliers")
 public class SupplierController {
 
-    public final ISupplierService _supplierService;
+    private final ISupplierService _supplierService;
 
     public SupplierController(ISupplierService _supplierService) {
         this._supplierService = _supplierService;

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    public final ICustomerService _customerService;
+    private final ICustomerService _customerService;
 
     public CustomerController(ICustomerService _customerService) {
         this._customerService = _customerService;
